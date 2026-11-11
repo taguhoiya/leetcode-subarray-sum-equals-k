@@ -15,6 +15,7 @@
  *   times = [[2, 1, 1], [2, 3, 1], [3, 4, 1]], n = 4, k = 2 -> 2
  *   times = [[1, 2, 1]], n = 2, k = 1 -> 1
  *   times = [[1, 2, 1]], n = 2, k = 2 -> -1
+ *   times = [[2, 1, 5], [2, 3, 1], [3, 1, 1]], n = 3, k = 2 -> 2
  *
  * Constraints
  *   1 <= k <= n <= 100
@@ -69,6 +70,7 @@ public class NetworkDelayTime {
         arrival[k] = 0;
 
         // Each pair is [arrival time, person].
+        // use comparator to pick the firstest route using if (time > arrival[person]) parts
         PriorityQueue<int[]> queue
                 = new PriorityQueue<>(Comparator.comparingInt(pair -> pair[0]));
         queue.offer(new int[]{0, k});

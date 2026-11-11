@@ -12,7 +12,7 @@ Prints `Expected 2, got 2`. Uses Java's source-file mode, so there is no `javac`
 
 ## Sliding window does not work here
 
-The usual first attempt is two pointers: grow the window while the sum is too small, shrink it while the sum is too large. That assumes every number is positive. Here numbers can be negative, so adding an element can make the sum *smaller*, and the window has no valid move left.
+The usual first attempt is two pointers: grow the window while the sum is too small, shrink it while the sum is too large. That assumes every number is positive. Here numbers can be negative, so adding an element can make the sum _smaller_, and the window has no valid move left.
 
 ## Prefix sums
 
@@ -83,12 +83,12 @@ If `sum = 7` and `k = 3`, we need an earlier total of `4`, because `7 - 4 = 3`. 
 Start: `sum = 0`, `count = 0`, map = `{0=1}`.
 
 | Number | New `sum` | Look for `sum - 3` | Frequency found | Total `count` | Remember |
-|---|---:|---:|---:|---:|---|
-| 1 | 1 | -2 | 0 | 0 | `1=1` |
-| 2 | 3 | 0 | 1 | 1 | `3=1` |
-| 1 | 4 | 1 | 1 | 2 | `4=1` |
-| 2 | 6 | 3 | 1 | 3 | `6=1` |
-| 1 | 7 | 4 | 1 | 4 | `7=1` |
+| ------ | --------: | -----------------: | --------------: | ------------: | -------- |
+| 1      |         1 |                 -2 |               0 |             0 | `1=1`    |
+| 2      |         3 |                  0 |               1 |             1 | `3=1`    |
+| 1      |         4 |                  1 |               1 |             2 | `4=1`    |
+| 2      |         6 |                  3 |               1 |             3 | `6=1`    |
+| 1      |         7 |                  4 |               1 |             4 | `7=1`    |
 
 The third iteration in detail:
 
@@ -114,12 +114,12 @@ The four matches are the adjacent pairs:
 Again, start with map = `{0=1}`.
 
 | Number | New `sum` | Look for `sum - 5` | Frequency found | Total `count` | Matching subarray |
-|---|---:|---:|---:|---:|---|
-| 1 | 1 | -4 | 0 | 0 | — |
-| 2 | 3 | -2 | 0 | 0 | — |
-| 3 | 6 | 1 | 1 | 1 | `[2, 3]` |
-| 4 | 10 | 5 | 0 | 1 | — |
-| 5 | 15 | 10 | 1 | 2 | `[5]` |
+| ------ | --------: | -----------------: | --------------: | ------------: | ----------------- |
+| 1      |         1 |                 -4 |               0 |             0 | —                 |
+| 2      |         3 |                 -2 |               0 |             0 | —                 |
+| 3      |         6 |                  1 |               1 |             1 | `[2, 3]`          |
+| 4      |        10 |                  5 |               0 |             1 | —                 |
+| 5      |        15 |                 10 |               1 |             2 | `[5]`             |
 
 In the last iteration the earlier total `10` represents `[1, 2, 3, 4]`. Subtracting it from `15` leaves just `[5]`.
 
